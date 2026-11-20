@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-T5SQ36P5G5"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-T5SQ36P5G5');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gift Card Guide</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #f7f8fc;
+            --text: #17181c;
+            --muted: #777b87;
+            --card: rgba(255, 255, 255, 0.75);
+            --border: rgba(0, 0, 0, 0.07);
+            --shadow: 0 15px 45px rgba(20, 25, 40, 0.08);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                         Roboto, Helvetica, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* -------------------------
+           BACKGROUND
+        ------------------------- */
+
+        .background-glow {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: rgba(100, 120, 255, 0.08);
+            filter: blur(100px);
+            top: -220px;
+            left: 50%;
+            transform: translateX(-50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* -------------------------
+           MAIN
+        ------------------------- */
+
+        .container {
+            width: min(100% - 40px, 900px);
+            margin: auto;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 70px 0;
+        }
+
+        /* -------------------------
+           HERO
+        ------------------------- */
+
+        .hero {
+            text-align: center;
+            max-width: 650px;
+            margin-bottom: 55px;
+            animation: fadeUp 0.8s ease forwards;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+
+            padding: 8px 14px;
+            border-radius: 50px;
+
+            background: rgba(255, 255, 255, 0.75);
+            border: 1px solid var(--border);
+
+            color: #666b78;
+            font-size: 13px;
+            font-weight: 600;
+
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.04);
+
+            margin-bottom: 22px;
+        }
+
+        .badge-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #35c875;
+            box-shadow: 0 0 0 4px rgba(53, 200, 117, 0.12);
+        }
+
+        h1 {
+            font-size: clamp(38px, 6vw, 68px);
+            line-height: 1.02;
+            letter-spacing: -2.8px;
+            font-weight: 750;
+            margin-bottom: 20px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(
+                100deg,
+                #17181c,
+                #555b68
+            );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            max-width: 540px;
+            margin: auto;
+
+            color: var(--muted);
+            font-size: 17px;
+            line-height: 1.65;
+        }
+
+        /* -------------------------
+           CARDS
+        ------------------------- */
+
+        .gift-cards {
+            width: 100%;
+
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .gift-card {
+            position: relative;
+                min-width : 224px;
+                margin : 24px;
+            min-height: 220px;
+
+            border-radius: 24px;
+
+            border: 1px solid var(--border);
+
+            background: var(--card);
+
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+
+            box-shadow: var(--shadow);
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            text-decoration: none;
+            color: var(--text);
+
+            overflow: hidden;
+
+            opacity: 0;
+            transform: translateY(30px);
+
+            animation: cardAppear 0.7s ease forwards;
+
+            transition:
+                transform 0.35s ease,
+                box-shadow 0.35s ease,
+                border-color 0.35s ease;
+        }
+
+        .gift-card:nth-child(1) {
+            animation-delay: 0.15s;
+        }
+
+        .gift-card:nth-child(2) {
+            animation-delay: 0.25s;
+        }
+
+        .gift-card:nth-child(3) {
+            animation-delay: 0.35s;
+        }
+
+        .gift-card::before {
+            content: "";
+
+            position: absolute;
+            inset: 0;
+
+            background:
+                radial-gradient(
+                    circle at 50% 0%,
+                    rgba(255,255,255,0.8),
+                    transparent 55%
+                );
+
+            opacity: 0;
+            transition: opacity 0.35s ease;
+        }
+
+        .gift-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 60px rgba(20, 25, 40, 0.13);
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .gift-card:hover::before {
+            opacity: 1;
+        }
+
+        /* -------------------------
+           LOGO
+        ------------------------- */
+
+        .logo-container {
+            position: relative;
+            z-index: 2;
+
+            width: 82px;
+            height: 82px;
+
+            border-radius: 22px;
+
+            background: #fff;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.08),
+                inset 0 0 0 1px rgba(0, 0, 0, 0.04);
+
+            margin-bottom: 19px;
+
+            transition:
+                transform 0.35s ease,
+                box-shadow 0.35s ease;
+        }
+
+        .gift-card:hover .logo-container {
+            transform: scale(1.07);
+            box-shadow:
+                0 15px 35px rgba(0, 0, 0, 0.11),
+                inset 0 0 0 1px rgba(0, 0, 0, 0.04);
+        }
+
+        .logo-container img {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+
+        .gift-name {
+            position: relative;
+            z-index: 2;
+
+            font-size: 16px;
+            font-weight: 700;
+
+            margin-bottom: 6px;
+        }
+
+        .gift-description {
+            position: relative;
+            z-index: 2;
+
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        /* -------------------------
+           FOOTER
+        ------------------------- */
+
+        .footer {
+            margin-top: 50px;
+
+            font-size: 12px;
+            color: #9a9da7;
+
+            text-align: center;
+
+            animation: fadeIn 1s ease 0.6s forwards;
+            opacity: 0;
+        }
+
+        /* -------------------------
+           ANIMATIONS
+        ------------------------- */
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes cardAppear {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* -------------------------
+           MOBILE
+        ------------------------- */
+
+        @media (max-width: 700px) {
+
+            .container {
+                width: min(100% - 28px, 500px);
+                padding: 45px 0;
+            }
+
+            .hero {
+                margin-bottom: 35px;
+            }
+
+            h1 {
+                font-size: clamp(38px, 12vw, 52px);
+                letter-spacing: -2px;
+            }
+
+            .hero p {
+                font-size: 15px;
+                line-height: 1.6;
+                padding: 0 5px;
+            }
+
+            .gift-cards {
+                grid-template-columns: 1fr;
+                gap: 13px;
+            }
+
+            .gift-card {
+                min-height: 115px;
+
+                flex-direction: row;
+                justify-content: flex-start;
+
+                padding: 18px 20px;
+
+                border-radius: 20px;
+            }
+
+            .logo-container {
+                width: 68px;
+                height: 68px;
+
+                border-radius: 18px;
+
+                margin-bottom: 0;
+                margin-right: 17px;
+
+                flex-shrink: 0;
+            }
+
+            .logo-container img {
+                width: 40px;
+                height: 40px;
+            }
+
+            .gift-info {
+                text-align: left;
+            }
+
+            .gift-name {
+                margin-bottom: 4px;
+                font-size: 15px;
+            }
+
+            .gift-description {
+                font-size: 12px;
+            }
+
+            .footer {
+                margin-top: 35px;
+            }
+        }
+
+        /* -------------------------
+           SMALL PHONES
+        ------------------------- */
+
+        @media (max-width: 380px) {
+
+            .container {
+                width: calc(100% - 22px);
+            }
+
+            .gift-card {
+                padding: 14px;
+            }
+
+            .logo-container {
+                width: 60px;
+                height: 60px;
+            }
+
+            .logo-container img {
+                width: 36px;
+                height: 36px;
+            }
+        }
+
+        /* -------------------------
+           REDUCED MOTION
+        ------------------------- */
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+        /* -------------------------
+   CLICK EFFECT
+------------------------- */
+
+.gift-card {
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        border-color 0.35s ease,
+        background 0.35s ease;
+}
+
+.gift-card.selected {
+    background: linear-gradient(
+        135deg,
+        #e8ebff,
+        #ffffff
+    );
+
+    border-color: rgba(90, 100, 255, 0.35);
+
+    box-shadow:
+        0 0 0 4px rgba(90, 100, 255, 0.08),
+        0 20px 55px rgba(90, 100, 255, 0.18);
+
+    transform: scale(0.97);
+}
+
+.gift-card.selected .logo-container {
+    transform: scale(1.08);
+    box-shadow:
+        0 0 0 5px rgba(90, 100, 255, 0.10),
+        0 12px 35px rgba(0, 0, 0, 0.10);
+}
+
+.gift-card.selected .gift-name {
+    color: #5865f2;
+}
+    </style>
+</head>
+
+<body>
+
+    <div class="background-glow"></div>
+
+    <main class="container">
+
+        <section class="hero">
+
+            <div class="badge">
+                <span class="badge-dot"></span>
+                Gift cards guide
+            </div>
+
+            <h1>
+                Get Free
+                <span class="gradient-text">Gift Cards.</span>
+            </h1>
+
+            <p>
+                Looking for free PlayStation, Roblox, or Steam gift cards? Explore legitimate rewards programs, promotions, and giveaways. Avoid fake code generators, never share your password, and always verify the source before using a code.
+            </p>
+
+        </section>
+
+
+        
+            <a href="playstation.html" class="gift-card">
+
+                <div class="logo-container">
+                    <img
+                        src="https://upload.wikimedia.org/wikipedia/commons/0/00/PlayStation_logo.svg"
+                        alt="PlayStation"
+                    >
+                </div>
+
+                <div class="gift-info">
+                    <div class="gift-name">
+                        PlayStation Gift Card
+                    </div>
+
+                    <div class="gift-description">
+                        View PlayStation guide
+                    </div>
+                </div>
+
+            </a>
+            
+        <a href="tiktokbanner.html" class="gift-card">
+
+                <div class="logo-container">
+                    <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrcYYSsqfPgD84KArh2Bcngb6dp5jAQiv3ilKtabrXAg&s=10"
+                        alt="PlayStation"
+                    >
+                </div>
+
+                <div class="gift-info">
+                    <div class="gift-name">
+                        Tiktok Banner
+                    </div>
+
+                    <div class="gift-description">
+                        View TikTok Banner Guide
+                    </div>
+                </div>
+
+            </a>
+
+            <!-- ROBLOX -->
+
+            <a href="roblox.html" class="gift-card">
+
+                <div class="logo-container">
+                    <img
+                        src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Roblox_Logo_2022.jpg"
+                        alt="Roblox"
+                    >
+                </div>
+
+                <div class="gift-info">
+                    <div class="gift-name">
+                        Roblox Gift Card
+                    </div>
+
+                    <div class="gift-description">
+                        View Roblox guide
+                    </div>
+                </div>
+
+            </a>
+
+        <a href="xbox.html" class="gift-card">
+
+                <div class="logo-container">
+                    <img
+                        src="https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3a/Xbox_app_logo.svg/960px-Xbox_app_logo.svg.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail"
+                        alt="Roblox"
+                    >
+                </div>
+
+                <div class="gift-info">
+                    <div class="gift-name">
+                        Xbox Gift Card
+                    </div>
+
+                    <div class="gift-description">
+                        View Xbox guide
+                    </div>
+                </div>
+                </a>
+        <a href="steam.html" class="gift-card">
+
+                <div class="logo-container">
+                    <img
+                        src="https://thumb.wikimedia.org/wikipedia/commons/thumb/8/83/Steam_icon_logo.svg/1280px-Steam_icon_logo.svg.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail"
+                        alt="Roblox"
+                    >
+                </div>
+
+                <div class="gift-info">
+                    <div class="gift-name">
+                        Steam gift Card
+                    </div>
+
+                    <div class="gift-description">
+                        View Steam guide
+                    </div>
+                </div>
+                </a>
+            <a href="apple.html" class="gift-card">
+
+                <div class="logo-container">
+                    <img
+                        src="https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1b/Apple_logo_grey.svg/960px-Apple_logo_grey.svg.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail"
+                        alt="Amazon"
+                    >
+                </div>
+
+                <div class="gift-info">
+                    <div class="gift-name">
+                        Apple Gift Card
+                    </div>
+
+                    <div class="gift-description">
+                        View Apple guide
+                    </div>
+                </div>
+
+            </a>
+            <!-- AMAZON -->
+
+            <a href="amazon.html" class="gift-card">
+
+                <div class="logo-container">
+                    <img
+                        src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"
+                        alt="Amazon"
+                    >
+                </div>
+
+                <div class="gift-info">
+                    <div class="gift-name">
+                        Amazon
+                    </div>
+
+                    <div class="gift-description">
+                        View Amazon guide
+                    </div>
+                </div>
+
+            </a>
+
+        </section>
+
+
+        <div class="footer">
+            © 2026 codez67 · All rights reserved
+        </div>
+
+    </main>
+
+
+    <script>
+
+    const cards = document.querySelectorAll(".gift-card");
+
+    cards.forEach(card => {
+
+        // Mouse tilt effect
+        card.addEventListener("mousemove", (e) => {
+
+            if (window.innerWidth <= 700) return;
+
+            const rect = card.getBoundingClientRect();
+
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            const rotateX =
+                ((y - centerY) / centerY) * -2;
+
+            const rotateY =
+                ((x - centerX) / centerX) * 2;
+
+            card.style.transform =
+                `translateY(-8px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+
+
+        card.addEventListener("mouseleave", () => {
+            card.style.transform = "";
+        });
+
+
+        // CLICK EFFECT
+        card.addEventListener("click", function(e) {
+
+            // Prevent the page from navigating immediately
+            e.preventDefault();
+
+            // Add selected effect
+            this.classList.add("selected");
+
+            // Navigate after animation
+            setTimeout(() => {
+                window.location.href = this.href;
+            }, 350);
+
+        });
+
+    });
+
+</script>
+
+</body>
+</html>
